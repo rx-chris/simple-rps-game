@@ -76,7 +76,7 @@ async function selectPlayerModeActions(): Promise<string> {
 // prompt user for player mode actinos (p/q)
 async function selectComputerModeActions(): Promise<string> {
   let message = "";
-  message += "p - Play Again\n";
+  message += "p - Play\n";
   message += "q - Quit\n";
   console.log(message);
 
@@ -102,9 +102,6 @@ async function main() {
   // set game mode
   const isPlayerMode = gameMode === "p";
 
-  let playerChoice: Choice;
-  let computerChoice: Choice = getRandomChoice();
-
   const choices = {
     r: Choice.Rock,
     p: Choice.Paper,
@@ -112,7 +109,11 @@ async function main() {
   };
 
   console.clear();
+
   while (true) {
+    let playerChoice: Choice;
+    let computerChoice: Choice = getRandomChoice();
+
     // prompt different actions based on player mode
     const action = isPlayerMode
       ? await selectPlayerModeActions()
